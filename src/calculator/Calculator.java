@@ -13,8 +13,6 @@ import java.util.Scanner;
  */
 public class Calculator {
     public void calc() {
-        double result = 0;
-        
         Scanner sc = new Scanner(System.in);
             System.out.println("Podaj pierwszą liczbę: ");
                 while (!sc.hasNextDouble())
@@ -33,7 +31,13 @@ public class Calculator {
                     sc.nextLine();
             System.out.println("Podaj znak działania, które chcesz wykonać (+ - * / ^): ");
                 String operationSymbol = sc.nextLine();
-        
+                
+        Calculator calculator = new Calculator();
+        calculator.performOperation(firstUserNumber, secondUserNumber, operationSymbol);
+    }
+    
+    public void performOperation(double firstUserNumber, double secondUserNumber, String operationSymbol){
+        double result = 0;
         switch (operationSymbol) {
             case "+":
                 result = firstUserNumber+secondUserNumber;
@@ -55,7 +59,6 @@ public class Calculator {
                 System.out.println("Spróbuj jeszcze raz");
                 System.exit(0);
         }
-        
         System.out.println(result);
+     }
     }
-}
