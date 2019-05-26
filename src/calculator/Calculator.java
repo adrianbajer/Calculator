@@ -12,6 +12,7 @@ import java.util.Scanner;
  * @author Adrian
  */
 public class Calculator {
+    
     public void calc() {
         Scanner sc = new Scanner(System.in);
             System.out.println("Podaj pierwszą liczbę: ");
@@ -29,35 +30,49 @@ public class Calculator {
                 }
                     double secondUserNumber = sc.nextDouble();
                     sc.nextLine();
-            System.out.println("Podaj znak działania, które chcesz wykonać (+ - * / ^): ");
-                String operationSymbol = sc.nextLine();
+            System.out.println("Wpisz nazwę działania (ADD, SUBTRACT, MULTIPLY, DIVIDE, POWER): ");
+                String userSymbol = sc.nextLine();
+                try{
+                symbol = OperationSymbol.valueOf(userSymbol.toUpperCase());
+                }
+                catch (IllegalArgumentException e){
+                    System.out.println("Niewłaściwa nazwa działania!");
+                    System.out.println("Spróbuj jeszcze raz");
+                    return;
+                }
                 
         Calculator calculator = new Calculator();
-        calculator.performOperation(firstUserNumber, secondUserNumber, operationSymbol);
+        calculator.performOperation(firstUserNumber, secondUserNumber, symbol);
     }
     
-    public void performOperation(double firstUserNumber, double secondUserNumber, String operationSymbol){
+    OperationSymbol symbol;
+    
+    enum OperationSymbol{
+        ADD,
+        SUBTRACT,
+        MULTIPLY,
+        DIVIDE,
+        POWER;
+    }    
+    
+    public void performOperation(double firstUserNumber, double secondUserNumber, OperationSymbol symbol){
         double result = 0;
-        switch (operationSymbol) {
-            case "+":
+        switch (symbol) {
+            case ADD:
                 result = firstUserNumber+secondUserNumber;
                 break;
-            case "-":
+            case SUBTRACT:
                 result = firstUserNumber-secondUserNumber;
                 break;
-            case "*":
+            case MULTIPLY:
                 result = firstUserNumber*secondUserNumber;
                 break;
-            case "/":
+            case DIVIDE:
                 result = firstUserNumber/secondUserNumber;
                 break;
-            case "^":
+            case POWER:
                 result = Math.pow(firstUserNumber, secondUserNumber);
                 break;
-            default:
-                System.out.println("Podałeś zły znak działania!");
-                System.out.println("Spróbuj jeszcze raz");
-                System.exit(0);
         }
         System.out.println(result);
      }
