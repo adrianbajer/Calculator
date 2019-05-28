@@ -1,16 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package calculator;
 
 import java.util.Scanner;
 
-/**
- *
- * @author Adrian
- */
 public class Calculator {
     
     public void calc() {
@@ -33,29 +25,19 @@ public class Calculator {
             System.out.println("Wpisz nazwę działania (ADD, SUBTRACT, MULTIPLY, DIVIDE, POWER): ");
                 String userSymbol = sc.nextLine();
                 try{
-                symbol = OperationSymbol.valueOf(userSymbol.toUpperCase());
+                symbol = OperationSymbols.valueOf(userSymbol.toUpperCase());
                 }
                 catch (IllegalArgumentException e){
                     System.out.println("Niewłaściwa nazwa działania!");
                     System.out.println("Spróbuj jeszcze raz");
                     return;
                 }
-                
-        Calculator calculator = new Calculator();
-        calculator.performOperation(firstUserNumber, secondUserNumber, symbol);
+        System.out.println(performOperation(firstUserNumber, secondUserNumber, symbol));
     }
     
-    OperationSymbol symbol;
+    OperationSymbols symbol;
     
-    enum OperationSymbol{
-        ADD,
-        SUBTRACT,
-        MULTIPLY,
-        DIVIDE,
-        POWER;
-    }    
-    
-    public void performOperation(double firstUserNumber, double secondUserNumber, OperationSymbol symbol){
+    public double performOperation(double firstUserNumber, double secondUserNumber, OperationSymbols symbol){
         double result = 0;
         switch (symbol) {
             case ADD:
@@ -74,6 +56,6 @@ public class Calculator {
                 result = Math.pow(firstUserNumber, secondUserNumber);
                 break;
         }
-        System.out.println(result);
+        return result;
      }
     }
