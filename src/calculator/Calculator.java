@@ -22,16 +22,16 @@ public class Calculator {
                 }
                     double secondUserNumber = sc.nextDouble();
                     sc.nextLine();
-            System.out.println("Wpisz nazwę działania (ADD, SUBTRACT, MULTIPLY, DIVIDE, POWER): ");
+            System.out.println("Podaj znak działania (+, -, *, /, ^): ");
                 String userSymbol = sc.nextLine();
-                try{
-                symbol = OperationSymbols.valueOf(userSymbol.toUpperCase());
-                }
-                catch (IllegalArgumentException e){
-                    System.out.println("Niewłaściwa nazwa działania!");
+                
+                symbol = OperationSymbols.getOperation(userSymbol);
+                if (symbol == null){
+                    System.out.println("Niewłaściwy znak działania!");
                     System.out.println("Spróbuj jeszcze raz");
                     return;
                 }
+                    
         System.out.println(performOperation(firstUserNumber, secondUserNumber, symbol));
     }
     
