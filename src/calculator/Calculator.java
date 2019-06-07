@@ -1,20 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package calculator;
 
 import java.util.Scanner;
 
-/**
- *
- * @author Adrian
- */
 public class Calculator {
+    
     public void calc() {
-        double result = 0;
-        
         Scanner sc = new Scanner(System.in);
             System.out.println("Podaj pierwszą liczbę: ");
                 while (!sc.hasNextDouble())
@@ -31,31 +22,40 @@ public class Calculator {
                 }
                     double secondUserNumber = sc.nextDouble();
                     sc.nextLine();
-            System.out.println("Podaj znak działania, które chcesz wykonać (+ - * / ^): ");
-                String operationSymbol = sc.nextLine();
-        
-        switch (operationSymbol) {
-            case "+":
+            System.out.println("Podaj znak działania (+, -, *, /, ^): ");
+                String userSymbol = sc.nextLine();
+                
+                symbol = OperationSymbols.getOperation(userSymbol);
+                if (symbol == null){
+                    System.out.println("Niewłaściwy znak działania!");
+                    System.out.println("Spróbuj jeszcze raz");
+                    return;
+                }
+                    
+        System.out.println(performOperation(firstUserNumber, secondUserNumber, symbol));
+    }
+    
+    OperationSymbols symbol;
+    
+    public double performOperation(double firstUserNumber, double secondUserNumber, OperationSymbols symbol){
+        double result = 0;
+        switch (symbol) {
+            case ADD:
                 result = firstUserNumber+secondUserNumber;
                 break;
-            case "-":
+            case SUBTRACT:
                 result = firstUserNumber-secondUserNumber;
                 break;
-            case "*":
+            case MULTIPLY:
                 result = firstUserNumber*secondUserNumber;
                 break;
-            case "/":
+            case DIVIDE:
                 result = firstUserNumber/secondUserNumber;
                 break;
-            case "^":
+            case POWER:
                 result = Math.pow(firstUserNumber, secondUserNumber);
                 break;
-            default:
-                System.out.println("Podałeś zły znak działania!");
-                System.out.println("Spróbuj jeszcze raz");
-                System.exit(0);
         }
-        
-        System.out.println(result);
+        return result;
+     }
     }
-}
