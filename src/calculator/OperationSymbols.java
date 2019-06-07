@@ -2,12 +2,39 @@
 package calculator;
 
 public enum OperationSymbols{
-    ADD("+"),
-    SUBTRACT("-"),
-    MULTIPLY("*"),
-    DIVIDE("/"),
-    POWER("^");
-
+    ADD("+") {
+        @Override
+        public double performOperation(double firstUserNumber, double secondUserNumber) {
+            return result = firstUserNumber+secondUserNumber;
+        }
+    },
+    SUBTRACT("-") {
+        @Override
+        public double performOperation(double firstUserNumber, double secondUserNumber) {
+            return result = firstUserNumber-secondUserNumber;
+        }
+    },
+    MULTIPLY("*") {
+        @Override
+        public double performOperation(double firstUserNumber, double secondUserNumber) {
+            return result = firstUserNumber*secondUserNumber;
+        }
+    },
+    DIVIDE("/") {
+        @Override
+        public double performOperation(double firstUserNumber, double secondUserNumber) {
+            return result = firstUserNumber/secondUserNumber;
+        }
+    },
+    POWER("^") {
+        @Override
+        public double performOperation(double firstUserNumber, double secondUserNumber) {
+            return result = Math.pow(firstUserNumber, secondUserNumber);
+        }
+    };
+    
+    double result;
+    
     String userSymbol;
     private OperationSymbols(String userSymbol) {
         this.userSymbol = userSymbol;
@@ -24,4 +51,5 @@ public enum OperationSymbols{
         }
         return null;
     }
+    abstract public double performOperation(double firstUserNumber, double secondUserNumber);
 }

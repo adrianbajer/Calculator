@@ -25,37 +25,15 @@ public class Calculator {
             System.out.println("Podaj znak działania (+, -, *, /, ^): ");
                 String userSymbol = sc.nextLine();
                 
+                OperationSymbols symbol;
                 symbol = OperationSymbols.getOperation(userSymbol);
-                if (symbol == null){
-                    System.out.println("Niewłaściwy znak działania!");
-                    System.out.println("Spróbuj jeszcze raz");
-                    return;
-                }
-                    
-        System.out.println(performOperation(firstUserNumber, secondUserNumber, symbol));
+                    if (symbol == null){
+                        System.out.println("Niewłaściwy znak działania!");
+                        System.out.println("Spróbuj jeszcze raz");
+                        return;
+                    }
+                double result = 0;
+                result = symbol.performOperation(firstUserNumber, secondUserNumber);
+                System.out.println(result);
     }
-    
-    OperationSymbols symbol;
-    
-    public double performOperation(double firstUserNumber, double secondUserNumber, OperationSymbols symbol){
-        double result = 0;
-        switch (symbol) {
-            case ADD:
-                result = firstUserNumber+secondUserNumber;
-                break;
-            case SUBTRACT:
-                result = firstUserNumber-secondUserNumber;
-                break;
-            case MULTIPLY:
-                result = firstUserNumber*secondUserNumber;
-                break;
-            case DIVIDE:
-                result = firstUserNumber/secondUserNumber;
-                break;
-            case POWER:
-                result = Math.pow(firstUserNumber, secondUserNumber);
-                break;
-        }
-        return result;
-     }
-    }
+}
