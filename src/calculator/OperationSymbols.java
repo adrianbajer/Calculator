@@ -36,12 +36,8 @@ public enum OperationSymbols{
     double result;
     
     String userSymbol;
-    private OperationSymbols(String userSymbol) {
+    OperationSymbols(String userSymbol) {
         this.userSymbol = userSymbol;
-    }
-    
-    public static String getUserSymbol(OperationSymbols operation){
-        return operation.userSymbol;
     }
 
     public static OperationSymbols getOperation (String symbol){

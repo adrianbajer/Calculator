@@ -32,8 +32,7 @@ public class Calculator {
                         System.out.println("Spróbuj jeszcze raz");
                         return;
                     }
-                double result = 0;
-                result = symbol.performOperation(firstUserNumber, secondUserNumber);
+                double result = symbol.performOperation(firstUserNumber, secondUserNumber);
                 System.out.println(result);
     }
 }
